@@ -21,6 +21,8 @@ Get-NetUser -Username mucomplex<br>
 #### Get list of all properties for user in the current domain<br>
 Get-UserProperty<br>
 Get-UserProperty -Properties pwdlastset<br>
+#### Read for Description <br>
+Find-UserField -SearchField Description -SearchTerm "built"
 
 # ActiveDirectory PowerShell module<br>
 #### Get Current Domain<br>
@@ -37,6 +39,8 @@ Get-ADUser -Filter * -Properties *<br>
 Get-ADUser -Identity mucomplex -Properties *<br>
 #### Get list of all properties for users in the current domain<br>
 Get-ADUser -Filter * -Properties * | Select  -First 1 | Get-Member -MemberType \*Property | Select Name<br>
+#### Read for Description <br>
+Get-ADUser -Filter '"Description -like "\*built\*"' -Properties Description | Select name,Description <br>
 
 
 
