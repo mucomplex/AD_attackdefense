@@ -3,11 +3,11 @@ $ADClass = [System.DirectoryServices.ActiveDirectory.Domain]<br>
 $ADClass::GetCurrentDomain()<br>
 <br>
 # PowerView<br>
-##Get Current Domain<br>
+## Get Current Domain<br>
 Get-NetDomain<br>
-##Get Object of another domain<br>
+## Get Object of another domain<br>
 Get-NetDOmain -Domain Hydra.local<br>
-#Get domain SID for current Domain<br>
+# Get domain SID for current Domain<br>
 Get-DomainSID<br>
 ## Policy<br>
 Get-DomainPolicy<br>
