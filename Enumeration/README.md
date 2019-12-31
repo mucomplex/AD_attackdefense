@@ -55,8 +55,6 @@ Invoke-FileFinder -Verbose <br>
 #### Get all fileservers of the domain <br>
 Get-NetFileServer <br>
 
-<br>
-<br>
 # ActiveDirectory PowerShell module<br>
 #### Get Current Domain<br>
 Get-ADDomain<br>
