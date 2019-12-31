@@ -6,11 +6,12 @@ $ADClass::GetCurrentDomain()<br>
 #### Get Current Domain<br>
 Get-NetDomain<br>
 #### Get Object of another domain<br>
-Get-NetDOmain -Domain Hydra.local<br>
+Get-NetDomain -Domain Hydra.local<br>
 #### Get domain SID for current Domain<br>
 Get-DomainSID<br>
 #### Policy<br>
 Get-DomainPolicy<br>
+(Get-DomainPolicy)."system access"<br>
 #### Get domain controllers for the current domain<br>
 Get-NetDomainController<br>
 Get-NetDomainCOntroller -Domain moneycorp.local<br>
