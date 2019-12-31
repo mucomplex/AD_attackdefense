@@ -38,6 +38,23 @@ Get-NetGroup \*admin\* <br>
 Get-NetGroupMember -GroupName "Domain Admins" -Recurse <br>
 #### Get Group member of user <br>
 Get-NetGroup -UserName "mucomplex" <br>
+#### List all the localgroup on a machine (need administrator privs on non-dc machines) <br>
+Get-NetLocalGroup -ComputerName Hydra.local -ListGroups <br>
+#### Get members of all the localgroups on machine (need administrator privs on non-dc machines) <br>
+Get-NetLocalGroup -ComputerName Hydra.local -Recurse <br> 
+#### Get actively logged users on a computer (need local admin rights on the target) <br>
+Get-NetLoggedon -ComputerName Hydra.local <br>
+#### Get locally logged users on a computer (need remote registry on the target) <br>
+Get-LoggedonLocal -ComputerName Hydra.local <br>
+#### Get the last logged user on a computer (need administrator rights and remote registry on targets) <br>
+Get-LastLoggedOn -ComputerName Hydra.local <br>
+#### Find Shares on hosts in current domain <br>
+Invoke-ShareFinder -Verbose <br>
+#### Find sensitive files on computers in the domain <br>
+Invoke-FileFinder -Verbose <br>
+#### Get all fileservers of the domain <br>
+Get-NetFileServer <br>
+
 <br>
 <br>
 # ActiveDirectory PowerShell module<br>
