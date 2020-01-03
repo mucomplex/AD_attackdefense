@@ -54,6 +54,29 @@ Invoke-ShareFinder -Verbose <br>
 Invoke-FileFinder -Verbose <br>
 #### Get all fileservers of the domain <br>
 Get-NetFileServer <br>
+#### list of GPO in current domain <br>
+Get-NetGPO <br>
+Get-NetGPO -ComputerName HYDRA.local <br>
+#### Get GPO use Restricted Group or Group.xml <br>
+Get-NetGPOGroup <br>
+#### Get users which are in a local group of a machine using GPO <br>
+Find-GPOComputerAdmin -Computername HYDRA.local <br>
+#### Get machines where the given user is member of specific group <br>
+Find-GPOLocation -UserName mucomplex -Verbose <br>
+#### Get OUs in a domain <br>
+Get-NetOU -FullData <br>
+#### Get GPO applied on an OU <br>
+Get-NetGPO -GPOname "{gid}" <br>
+#### Get the ACLs associated with the specified object <br>
+Get-ObjectAcl -SamAccountName mucomplex -ResolveGUIDs <br>
+#### Get ACLs associated with the specified prefix <br>
+Get-ObjectAcl -ADSprefix 'CN=Administrator,CN=Users' -Verbose <br>
+#### Get ACLs associated with specified LDAP path <br>
+Get-ObjectAcl -ADSpath "LDAP://CN=Domain Admins,DC=HYDRA,DC=local" -ResolveGUIDs -Verbose <br>
+#### Search for interesting ACE <br>
+Invoke-ACLScanner -ResolveGUIDs <br>
+#### Get ACLs associate with specific path <br>
+Get-PathAcl -Path "\\hydra.local\sysvol" <br>
 
 # ActiveDirectory PowerShell module<br>
 #### Get Current Domain<br>
@@ -74,7 +97,7 @@ Get-ADUser -Filter * -Properties * | Select  -First 1 | Get-Member -MemberType \
 Get-ADUser -Filter '"Description -like "\*built\*"' -Properties Description | Select name,Description <br>
 #### Get a list of computers in the current domain <br>
 Get-ADComputer -Filter * | select Name <br>
-Get-ADComputer -Filter 'OperatingSystem -like "\*Server 2016\*" -Properties OperatingSystem | select Name,OperatingSystem<br>
+Get-ADComputer -Filter 'OperatingSystem -like "\*Server 2016\*" -Properties OperatingSystem | select Name,OperatingSystem <br>
 Get-ADComputer -Filter * -Properties *<br>
 #### Get all the groups in the current domain <br>
 Get-ADGroup -Filter * | select Name <br>
@@ -85,4 +108,13 @@ Get-ADGroup -Filter 'Name -like "\*admin\*"' | select Name <br>
 Get-ADGroupMember -Identity "Domain Admins" -Recursive <br>
 #### Get Group member of user <br>
 Get-ADPrincipalGroupMembership -Identity mucomplex <br>
+#### list of GPO in current domain <br>
+Get-GPO -All <br>
+Get-GPResutantSetOfPolicy -ReportType Html -Path C:\report.html <br>
+#### Get OUs in a domain <br>
+Get-ADOrganizationalUnit -Filter * -Properties * <br>
+#### Get GPO applied on an OU <br>
+Get-GPO -Guid {gid} <br>
+#### enumerate ACL without resolve uid <br>
+(Get-Acl 'AD:\CN=Administrator,CN=Users,DC=HYDRA,DC=local').Access <br>
 
