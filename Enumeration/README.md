@@ -77,6 +77,37 @@ Get-ObjectAcl -ADSpath "LDAP://CN=Domain Admins,DC=HYDRA,DC=local" -ResolveGUIDs
 Invoke-ACLScanner -ResolveGUIDs <br>
 #### Get ACLs associate with specific path <br>
 Get-PathAcl -Path "\\hydra.local\sysvol" <br>
+#### Get a list of all domain trust for the current domain<br>
+Get-NetDomainTrust<br>
+Get-NetDomainTrust -Domain hydra.local<br>
+#### Get detail about the current forest <br>
+Get-NetForest<br>
+Get-NetForest -Forest Hydra.local<br>
+#### Get all domains in the current forest<br>
+Get-NetForestDomain <br>
+Get-NetForestDOmain -Forest hydra.local <br>
+#### Forest mapping<br>
+Get-NetForestCatalog<br>
+Get-NetForestCatalog -Forest hydra.local <br>
+#### Map Trust of a forest <br>
+Get-NetForestTrust<br>
+Get-NetForestTrust -Forest hydra.local<br>
+#### Find machine has local admin access <br>
+Find-LocalAdminAccess -Verbose<br>
+####<br>
+Find-WMILocalAdminAcess.ps1 <br>
+#### Find local admins on all machines of the domain <br>
+Invoke-EnumerateLocalAdmin -Verbose <br>
+#### Find Computers where a domain admin has sessions: <br>
+Invoke-UserHunter <br>
+Invoke-UserHunter -GroupName "RDPUsers" <br>
+#### To confirm admin access <br>
+Invoke-UserHunter -CheckAccess <br>
+#### Find computers where a domain admin is logged-in <br>
+Invoke-UserHunter -Stealth <br>
+#### Defense <br>
+.\NetCease.ps1 <br>
+
 
 # ActiveDirectory PowerShell module<br>
 #### Get Current Domain<br>
@@ -117,4 +148,16 @@ Get-ADOrganizationalUnit -Filter * -Properties * <br>
 Get-GPO -Guid {gid} <br>
 #### enumerate ACL without resolve uid <br>
 (Get-Acl 'AD:\CN=Administrator,CN=Users,DC=HYDRA,DC=local').Access <br>
+#### Get a list of all domain trust for the current domain<br>
+Get-ADTrust <br>
+Get-ADTrust -Identity hydra.local<br>
+#### Get detail about the current forest <br>
+Get-ADForest <br>
+Get-ADForest -Identity hydra.local <br>
+#### Get all domains in the current forest<br>
+(Get-ADForest).Domains <br>
+#### Forest mapping<br>
+Get-ADForest | select -ExpandProperty GlobalCatalogs<br>
+#### Map Trust of a forest <br>
+Get-ADTrust -Filter 'msDS-TrustFOrestTrustInfo -ne "$null"'<br>
 
